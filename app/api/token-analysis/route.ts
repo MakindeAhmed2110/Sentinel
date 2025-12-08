@@ -1079,8 +1079,8 @@ export async function GET(request: Request) {
       },
       onChainMetrics: {
         // Prioritize DexScreener holders if available, otherwise use on-chain estimate
-        totalHolders: dexScreenerData.onChainMetrics?.totalHolders > 0 
-          ? dexScreenerData.onChainMetrics.totalHolders 
+        totalHolders: (dexScreenerData.onChainMetrics?.totalHolders ?? 0) > 0
+          ? (dexScreenerData.onChainMetrics?.totalHolders ?? 0)
           : onChainData.onChainMetrics?.totalHolders || 0,
         buySellRatio: dexScreenerData.onChainMetrics?.buySellRatio || onChainData.onChainMetrics?.buySellRatio || 1.0,
         whaleActivity: dexScreenerData.onChainMetrics?.whaleActivity || onChainData.onChainMetrics?.whaleActivity || 'unknown',
